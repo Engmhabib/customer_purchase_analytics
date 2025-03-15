@@ -1,13 +1,15 @@
 from airflow import DAG
 from airflow.providers.databricks.operators.databricks import DatabricksRunNowOperator
 from airflow.utils.dates import days_ago
+import os
 
 default_args = {
-    'owner': 'data_engineer',
+    'owner': os.getenv('AIRFLOW_OWNER', 'data_engineer'),
     'depends_on_past': False,
     'start_date': days_ago(1),
     'email_on_failure': True,
-    'email': ['data-team@company.com']
+    'email': [os.getenv('ALERT_EMAIL', 'data-team@company.com')],
+    'retries': 2
 }
 
 dag = DAG(
@@ -20,7 +22,7 @@ dag = DAG(
 ingest_data = DatabricksRunNowOperator(
     task_id='ingest_data',
     databricks_conn_id='databricks_default',
-    job_id='123',  # Job ID from Databricks workspace
+    job_id=os.getenv('JOB_ID_INGEST', '123'),
     notebook_params={"step": "ingest"},
     dag=dag
 )
@@ -28,7 +30,7 @@ ingest_data = DatabricksRunNowOperator(
 transform_data = DatabricksRunNowOperator(
     task_id='transform_data',
     databricks_conn_id='databricks_default',
-    job_id='124',
+    job_id=os.getenv('JOB_ID_TRANSFORM', '124'),
     notebook_params={"step": "transform"},
     dag=dag
 )
@@ -36,7 +38,7 @@ transform_data = DatabricksRunNowOperator(
 load_to_sql = DatabricksRunNowOperator(
     task_id='load_to_sql',
     databricks_conn_id='databricks_default',
-    job_id='125',
+    job_id=os.getenv('JOB_ID_LOAD', '125'),
     notebook_params={"step": "load"},
     dag=dag
 )
