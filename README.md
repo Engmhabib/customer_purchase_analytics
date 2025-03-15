@@ -46,7 +46,7 @@ The Customer Purchase Analytics Pipeline is an enterprise-grade solution enginee
 - Compliance with industry-standard data privacy regulations.
 
 ## Get In Touch
-For more information, collaborations, or inquiries, please contact us at [habibagrebi7@gmail.com](mailto:habibagrebi7@gmail.com) or connect on [LinkedIn]([https://www.linkedin.com](https://www.linkedin.com/in/agrebi-mohamed-habib-4b767b13b/)).
+For more information, collaborations, or inquiries, please contact us at [habibagrebi7@gmail.com](mailto:habibagrebi7@gmail.com) or connect on [LinkedIn]([https://www.linkedin.com/in/agrebi-mohamed-habib-4b767b13b/]
 
 ## License
 This project is licensed under the MIT License.
